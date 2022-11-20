@@ -21,6 +21,15 @@
     "@angular/router": "~11.2.14",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "ajv": "^6.12.2",
+    "chart.js": "^2.9.3",
+    "core-js": "^2.6.11",
+    "google-auth-library": "^4.2.6",
+    "https-proxy-agent": "^3.0.1",
+    "jquery": "^3.5.1",
+    "ng2-charts": "^2.3.2",
+    "ngx-socket-io": "^3.0.1",
+    "rxjs-compat": "^6.5.5",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
