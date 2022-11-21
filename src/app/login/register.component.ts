@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import swal from 'sweetalert';
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
@@ -61,7 +60,6 @@ let pass2 = group.controls[campo2].value;
   }
 
   if ( !this.forma.value.condiciones) {
-    swal('Importante', 'Debe aceptar las condiciones', 'warning');
     return;
   }
 let usuario = new Usuario (
