@@ -7,5 +7,5 @@
 
 export const environment = {
   production: true,
-  wsUrl: 'https://camera-share.herokuapp.com/',
+  wsUrl: 'https://still-lake-57873.herokuapp.com/',
 };
