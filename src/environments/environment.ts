@@ -7,5 +7,5 @@
 
 export const environment = {
   production: true,
-  wsUrl: 'http://localhost:3000/',
+  wsUrl: 'https://camera-share.herokuapp.com/',
 };
