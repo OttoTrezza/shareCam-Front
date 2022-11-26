@@ -1,10 +1,12 @@
 import { Component, OnDestroy, PLATFORM_ID, Inject, ViewChild, ElementRef } from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
+import { UsuarioService, WebsocketService } from 'src/app/services/service.index';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
-  styleUrls: ['./camera.component.css']
+  styleUrls: ['./camera.component.css'],
 })
 export class CameraComponent {
 
@@ -12,8 +14,21 @@ export class CameraComponent {
   //  canvas: CanvasCaptureMediaStreamTrack;
   //  ctx;
   constructor( 
-    @Inject(PLATFORM_ID)  private _platform: Object
+    @Inject(PLATFORM_ID)  private _platform: Object,
+    public _wsService: WebsocketService,
+    public usuarioService: UsuarioService
     ) { }
+    ngOnInit(){
+      console.log(navigator)
+      let usuario = new Usuario (
+        navigator.userAgent,
+        'invitado5@test.com',
+        '1'
+      );
+      this.usuarioService.crearUsuario(usuario)
+      // this.usuarioService.crearUsuario()
+      this._wsService.entrarChat(navigator.userAgent, 'Juegos', '');
+    }
 
   onStart(){
     if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
@@ -21,6 +36,17 @@ export class CameraComponent {
         const _video = this.video.nativeElement;
         _video.srcObject = ms;
         _video.play(); 
+        const payload = {
+          de: navigator.userAgent,
+          cuerpo: ms,
+          img: '',
+          sala: 'Juegos'
+          };
+        this._wsService.emit('mensaje', payload, (resp: any) => {
+        
+         console.log(resp);
+        });
+        
       });
     }
   }

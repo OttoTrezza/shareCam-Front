@@ -10,12 +10,14 @@ import { CameraComponent } from './camera/camera/camera.component';
 
 
 const appRoutes: Routes = [
+
     { path: 'camera', component: CameraComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    {path: '', component: LoginComponent },
-    {path: '*',
+    { path: '', redirectTo:'/login', pathMatch: 'full' },
+    { path: '*',
     component: PagesComponent,
+    // canLoad:[LoginGuardGuard],
     canActivate: [LoginGuardGuard],
     loadChildren: './pages/pages.module#PagesModule'
     },

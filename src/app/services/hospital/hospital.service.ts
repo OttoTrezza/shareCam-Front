@@ -7,7 +7,9 @@ import 'rxjs/add/operator/map';
 
 // import swal from 'sweetalert';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HospitalService {
 
   hospital: Hospital;

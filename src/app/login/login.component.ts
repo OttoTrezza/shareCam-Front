@@ -9,7 +9,6 @@ import { Usuario } from '../models/usuario.model';
 
 declare function init_plugins();
 
-declare const gapi: any;
 
 @Component({
   selector: 'app-login',
@@ -33,53 +32,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     init_plugins();
 
-    this.googleInit();
+   
     this.email = localStorage.getItem('email') || '';
     if ( this.email.length > 1) {
       this.recuerdame = true;
     }
   }
-googleInit() {
 
-gapi.load('auth2', () => {
-
-
-  this.auth2 = gapi.auth2.init({
-    client_id: '584414601747-ve69u1oukn9kq53u3den4hm8f986jcsc.apps.googleusercontent.com',
-    cookiepolicy: 'single_host_origin',
-    scope: 'profile email'
-  });
-  this.attachSignin(document.getElementById('btnGoogle'));
-});
-
-}
 attachSignin( element ) {
 
-  this.auth2.attachClickHandler( element, {}, (googleUser) => {
-
-  // let profile = googleUser.getBasicProfile();
-  let token = googleUser.getAuthResponse().id_token;
-  // console.log(this._usuarioService.loginGoogle( token ));
-  this._usuarioService.loginGoogle( token )
-              .subscribe( () => window.location.href = '/*/dashboard' );
-
- });
 }
 
   ingresar(forma: NgForm) {
     if ( forma.invalid) {
       return;
+    }else{ 
+     this._usuarioService.login(forma.value, forma.value.recuerdame)
+     .subscribe( correcto => this.router.navigate(['/*/dashboard']) );
+      }
     }
-    if(forma.value.invitado === true){
-      let usuario = new Usuario(null, "ignacio1@test.com", "123456");
-   this._usuarioService.login(usuario, forma.value.recuerdame)
-   .subscribe( correcto => this.router.navigate(['/*/dashboard']) );
-    }else {
-   let usuario = new Usuario(null, forma.value.email, forma.value.password);
-    this._usuarioService.login(usuario, forma.value.recuerdame)
-    
-    .subscribe( correcto => this.router.navigate(['/*/dashboard']) );
-  }
-  }
-
 }

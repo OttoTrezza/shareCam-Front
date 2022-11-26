@@ -1,4 +1,4 @@
-// import { URL_SERVICIOS } from '../../src/app/config/config';
+import { URL_SERVICIOS, URL_SERVICIOS_SOCKET } from '../../src/app/config/config';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -7,5 +7,6 @@
 
 export const environment = {
   production: true,
-  wsUrl: 'https://still-lake-57873.herokuapp.com/',
+  Url: URL_SERVICIOS,
+  wsUrl: URL_SERVICIOS_SOCKET, //'https://still-lake-57873.herokuapp.com/',
 };

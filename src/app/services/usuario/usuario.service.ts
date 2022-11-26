@@ -11,7 +11,9 @@ import { Observable } from 'rxjs/Observable';
 // import { WebsocketService } from '../websocket/websocket.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UsuarioService {
 
   usuario: Usuario;
@@ -89,7 +91,7 @@ export class UsuarioService {
     this.sala = sala;
   }
 
-  logout() {
+  public logout() {
 
     this.usuario = null;
     this.token = '';
@@ -118,7 +120,7 @@ export class UsuarioService {
 
 
   login( usuario: Usuario, recordar: boolean = false) {
-
+console.log('emytre')
    // this.usuario.sala = 'JUEGOS';
 
     if (recordar) {
@@ -151,7 +153,7 @@ export class UsuarioService {
     return this.http.get( url );
   }
   cargarSalasTodas() {
-    let url = URL_SERVICIOS + 'usuario/salas?';
+    let url = URL_SERVICIOS + 'mensajes/salas?';
     return this.http.get( url );
   }
 

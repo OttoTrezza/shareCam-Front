@@ -19,13 +19,14 @@ export class MensajesComponent implements OnInit, OnDestroy {
   textoUser = '';
   usuariosActivosSubscription: Subscription;
   salasSubscription: Subscription;
+  salasActivasSubscription: Subscription;
   // elemento: HTMLElement;
   usuarios: Usuario[] = [];
   usuario: Usuario ;
   usuariosala: Usuario ;
   nombre: string;
   sala: string;
-  salas = [];
+  salas: any;
   img: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
@@ -46,32 +47,35 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
+    this.salas = ['Juegos', 'Caca', 'Estopa'];
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
-    this.img = this._usuarioService.usuario.img;
+    this.img = '';
 
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
     this.usuariosala = this._usuarioService.usuario;
     this._chatService.emitirSalasActivas();
-    this.salasSubscription = this._chatService.getSalasActivas()
-          .subscribe( (respu: any) => {
-          this.salas = respu;
-
-          console.log('salas en mens.comp', this.salas);
-         // console.log(this.salas[0]);
-    } );
-
-
-    // this.elemento = document.getElementById('chat-usuarios');
-
+    this._chatService.emitirSalas();
     this._chatService.emitirUsuariosActivos(this.sala);
+
+
     this.usuariosActivosSubscription = this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
             this.usuarios = respu;
             console.log('usuarios en mens.comp', this.usuarios);
           } );
 
+    this.salasSubscription = this._chatService.getSalas()
+    .subscribe( (respu: any) => {
+      this.salas = [...this.salas, ...respu];
+      console.log('usuarios en mens.comppp', respu);
+    } );
+    this.salasActivasSubscription = this._chatService.getSalasActivas()
+    .subscribe( (respu: any) => {
+      this.salas = [...this.salas, ...respu];
+      console.log('usuarios en mens.comp1',respu);
+    } );
     // this._chatService.emitirSalasActivas();
     // this.salasSubscription = this._chatService.getSalasActivas()
     //       .subscribe((respu: []) => {
@@ -90,7 +94,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 //    });
 //  }
   ngOnDestroy() {
-      this.salasSubscription.unsubscribe();
+      this.salasActivasSubscription.unsubscribe();
       this.usuariosActivosSubscription.unsubscribe();
    // this.salasSubscription.unsubscribe();
    }
@@ -112,7 +116,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   }
 
     seleccionSala(f1: NgForm) {
-      console.log( f1.value );
+      console.log( 'f1value',f1.value );
 
       if ( !f1.value ) {
         return;

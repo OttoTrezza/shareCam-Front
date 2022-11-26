@@ -25,7 +25,6 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.cargarUsuarios();
-    this.cargarSalasTodas();
           // .subscribe( resp => this.cargarUsuarios() );
 
   }
@@ -37,16 +36,10 @@ export class UsuariosComponent implements OnInit {
           this.totalRegistros = resp.total;
           this.usuarios = resp.usuarios;
           this.cargando = false;
+          console.log('this.usuarios',this.usuarios);
     });
   }
-  cargarSalasTodas() {
-    this._usuarioService.cargarSalasTodas()
-    .subscribe( (resp: any) => {
-    this.salas = resp.sala;
-    this.cargando = false;
-});
-console.log('salas Usuario.comp', this.salas);
-  }
+
 
   buscarUsuario( termino: string) {
     if ( termino.length <= 0 ) {

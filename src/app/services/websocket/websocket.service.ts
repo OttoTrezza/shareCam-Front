@@ -12,7 +12,9 @@ import { Socket } from 'ngx-socket-io';
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WebsocketService {
   public router: Router;
   public socketStatus = false;
@@ -97,7 +99,7 @@ export class WebsocketService {
     getUsuario() {
       return this.usuario;
     }
-
+   
     cargarStorage() {
 
       if ( localStorage.getItem('usuario') ) {
@@ -109,7 +111,7 @@ export class WebsocketService {
     }
 
     listen( evento: string ) {
-    //  console.log('escuchando', this.socket.fromEvent(evento) );
+     console.log('escuchando', this.socket.fromEvent(evento) );
 
       return this.socket.fromEvent( evento );
     }

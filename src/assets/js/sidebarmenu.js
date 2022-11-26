@@ -1,7 +1,5 @@
 /*
-Template Name: Admin Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
+Template Name: Seras Admin
 File: js
 */
 (function (global, factory) {

@@ -1,4 +1,6 @@
+import { URL_SERVICIOS, URL_SERVICIOS_SOCKET } from '../../src/app/config/config';
 export const environment = {
   production: false,
-     wsUrl: 'https://still-lake-57873.herokuapp.com/' //'https://auto-otto.herokuapp.com/' 'http: //localhost:3000/'
+  Url: URL_SERVICIOS,
+  wsUrl: URL_SERVICIOS_SOCKET//'https://auto-otto.herokuapp.com/' 'https://still-lake-57873.herokuapp.com/' 
 };

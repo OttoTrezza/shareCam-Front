@@ -46,10 +46,7 @@ export class ChatComponent implements OnInit, OnDestroy {
        if ( msg.de === this._usuarioService.usuario.nombre ) {
         de = 'yo';
        }
-        //  if ( msg.de === 'Administrador') {
-        //   this.adminClass = 'box bg-light-danger';
-        //  }
-
+       
         let hora = fecha.getHours() + ':' + fecha.getMinutes();
         this.msg = {
           de,
@@ -101,6 +98,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
      this._chatService.sendMessage( this.texto, this._usuarioService.usuario.sala, (resp: any) => {
        this.msg = resp;
+       this.mensajes.push(this.msg)
        console.log('this.msg = ', this.msg);
    //    this.scrollBottom();
       });

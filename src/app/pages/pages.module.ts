@@ -19,13 +19,12 @@ import { PipesModule } from '../pipes/pipes.module';
 
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { HospitalesComponent } from './hospitales/hospitales.component';
-import { MedicosComponent } from './medicos/medicos.component';
-import { MedicoComponent } from './medicos/medico.component';
-import { BusquedaComponent } from './busqueda/busqueda.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { ChatComponent } from '../components/chat/chat.component';
 import { AutoOTTOChatComponent } from '../components/chat/auto-otto.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SalasComponent } from './salas/salas.component';
+import { DispositivosComponent } from './dispositivos/dispositivos.component';
 
 
 
@@ -36,13 +35,12 @@ import { AutoOTTOChatComponent } from '../components/chat/auto-otto.component';
         DashboardComponent,
         AccoutSettingsComponent,
         UsuariosComponent,
-        HospitalesComponent,
-        MedicosComponent,
-        MedicoComponent,
         MensajesComponent,
         ChatComponent,
-        BusquedaComponent
-
+        AutoOTTOChatComponent,
+        ProfileComponent,
+        SalasComponent,
+        DispositivosComponent,
     ],
     exports: [
         DashboardComponent,
@@ -54,7 +52,8 @@ import { AutoOTTOChatComponent } from '../components/chat/auto-otto.component';
         PAGES_ROUTES,
         FormsModule,
         PipesModule,
-        ChartsModule
+        ChartsModule,
+        
     ]
 })
 export class PagesModule { }

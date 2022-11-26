@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { WebsocketService } from '../websocket/websocket.service';
-// import { HttpClient } from '@angular/common/http';
-// import { URL_SERVICIOS } from '../../config/config';
-// import swal from 'sweetalert';
-import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs-compat/operator/map';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Router } from '@angular/router';
-import { Timestamp } from 'rxjs/internal-compatibility';
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ChatService {
 name: string;
 img: string;
@@ -31,9 +29,9 @@ img: string;
         img: this.img,
         sala: sala
         };
-      this.wsService.emit( 'mensaje' , payload, (resp: any) => {
+      this.wsService.emit('mensaje' , payload, (resp: any) => {
         callback(resp);
-       // console.log(resp);
+       console.log(resp);
       });
       console.log('Mensaje', payload );
       }
@@ -151,12 +149,21 @@ img: string;
           }
         });
     }
-    emitirSalasActivas() {
+    emitirSalas() {
       this.wsService.emit( 'obtener-salas', (entro: boolean) => {
         if (entro === true) {
-          console.log('Server:petición recibida');
+          console.log('Server:petición recibida salas');
         } else {
-            console.log('Sin respuesta del servidor');
+            console.log('Sin respuesta del servidor salas');
+        }
+      });
+    }
+    emitirSalasActivas() {
+      this.wsService.emit( 'obtener-salas-activas', (entro: boolean) => {
+        if (entro === true) {
+          console.log('Server:petición recibida salas activas');
+        } else {
+            console.log('Sin respuesta del servidor salas activas');
         }
       });
     }

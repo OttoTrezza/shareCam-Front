@@ -1,21 +1,21 @@
-<div class="w3-container">
+<div class="w3-container" style="overflow-y: auto;">
     <div class="row animated fadeIn">
-        <div class="col-12">
-            <div class="card m-b-0">
+        <div class="col-12" >
+            <div class="card m-b-0" style="height: 30rem;">
                 <!-- .chat-row -->
                 <div class="chat-main-box">
 
                     <div class="chat-right-aside">
 
-                        <div class="chat-rbox" width="850" height="800">
+                        <div class="chat-rbox" >
                             <div *ngFor="let msg of mensajes">
                                 <ul class="chat-list p-20" id="divChatbox">
-                                    <div *ngIf=" msg.de === 'yo' ; else elseBlock">
+                                    <div *ngIf="msg.de === 'yo' ; else elseBlock">
                                         <li class="reverse">
                                             <div class="chat-content">
                                                 <h5>{{msg.de}}</h5>
                                                 <div class="box bg-light-inverse">{{msg.cuerpo}}</div>
-                                                <div class="chat-img"><img [src]="msg.img | imagen:'usuario'" class="img-50 img-circle"></div>
+                                                <!-- <div class="chat-img"><img [src]="msg.img | imagen:'usuario'" class="img-50 img-circle"></div> -->
                                             </div>
                                             <!-- <div class="chat-time"> {{hora}} </div> -->
                                         </li>
@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                         <ng-template #elseBlock> -->
-                                            <div class="chat-img"><img [src]="msg.img | imagen:'usuario'" class="img-50 img-circle"></div>
+                                            <!-- <div class="chat-img"><img [src]="msg.img | imagen:'usuario'" class="img-50 img-circle"></div> -->
                                             <div class="chat-content">
                                                 <h5> {{msg.de}} </h5>
                                                 <div class="box bg-light-inverse"> {{msg.cuerpo}} </div>

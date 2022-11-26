@@ -8,7 +8,9 @@ import { Medico } from '../../models/medico.model';
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MedicoService {
 
   totalMedicos: number = 0;
